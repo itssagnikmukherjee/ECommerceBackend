@@ -19,7 +19,6 @@ def signUp():
     name = request.form['name']
     password = request.form['password']
     email = request.form['email']
-    # phone_number = request.form['phone_number']
     address = request.form['address']
     pinCode = request.form['pinCode']
 
