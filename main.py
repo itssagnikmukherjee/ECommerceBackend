@@ -14,11 +14,6 @@ def home():
 data = {"name":"Sagnik","role":"Android Dev"}
 
 
-@app.route('/admin', methods=['GET'])
-def admin():
-    return data
-
-
 @app.route('/signUp',methods = ['POST'])
 def signUp():
     name = request.form['name']
