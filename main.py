@@ -2,6 +2,7 @@ from flask import Flask,jsonify,request
 from db.createTableOperation import createTables
 from db.addOperation import createUser
 from db.readOperation import getAllUsers
+from db.auth import user_auth
 
 
 app = Flask(__name__)
@@ -25,6 +26,19 @@ def getUsers():
     users = getAllUsers()
     return jsonify(users)
 
+@app.route('/login',methods=['POST'])
+def login():
+    email = request.form['email']
+    password = request.form['password']
+
+    user = user_auth(email=email, password=password)
+
+    if user:
+        return jsonify({"message": "Logged in successfully", "user": user}), 200
+    else:
+        return jsonify({"message": "Invalid credentials"}), 401
+    
+    return user
 
 if __name__ == "__main__":
     createTables()
