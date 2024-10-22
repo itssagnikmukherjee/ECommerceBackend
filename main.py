@@ -20,7 +20,6 @@ def signUp():
     return data
 
 
-
 if __name__ == "__main__":
     createTables()
     app.run(debug=True)
