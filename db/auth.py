@@ -6,7 +6,5 @@ def user_auth(email, password):
 
     cursor.execute("SELECT * FROM Users WHERE email = ? AND password = ?", (email,password))
     user = cursor.fetchone()
-
     conn.close()
-
     return user
