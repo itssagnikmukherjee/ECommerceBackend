@@ -6,6 +6,9 @@ from db.auth import user_auth
 
 app = Flask(__name__)
 
+
+#sign up a user
+
 @app.route('/signUp',methods = ['POST'])
 def signUp():
     name = request.form['name']
