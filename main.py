@@ -1,6 +1,6 @@
 from flask import Flask,jsonify,request
-from db.createTableOperation import createTables
-from db.addOperation import createUser, createProduct
+from db.createTableOperation import createTables, createProductTable
+from db.addOperation import createUser, createNewProduct
 from db.readOperation import getAllUsers, getProducts
 from db.auth import user_auth
 
@@ -38,6 +38,29 @@ def login():
     
     return user
 
+
+#products 
+
+
+@app.route('/createProduct', methods=['POST'])
+def createProduct():
+    product_name = request.form['product_name']
+    stock = request.form['stock']
+    price = request.form['price']
+    category = request.form['category']
+    expiry_date = request.form['expiry_date']
+
+    data = createNewProduct(product_name,stock,price,category,expiry_date)
+    return data
+
+
+@app.route('/getAllProducts', methods=['GET'])
+def getAllProducts():
+    products = getProducts()
+    return jsonify(products)
+
+
 if __name__ == "__main__":
     createTables()
+    createProductTable()
     app.run(debug=True)

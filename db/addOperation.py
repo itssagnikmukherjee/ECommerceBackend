@@ -23,8 +23,8 @@ def createUser(name,password,email,pinCode,address,phoneNo):
     return {"message": "User created successfully", "user_id": user_id, "user_name": name}
 
 
-def createProduct(product_name,stock,price,category,expiry_date):
-    conn = sqlite3.connect("my_medicalshop.db")
+def createNewProduct(product_name,stock,price,category,expiry_date):
+    conn = sqlite3.connect("products.db")
     cursor = conn.cursor()
 
     cursor.execute(

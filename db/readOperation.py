@@ -28,7 +28,7 @@ def getAllUsers():
     return userJson
 
 def getProducts():
-    conn = sqlite3.connect("my_medicalshop.db")
+    conn = sqlite3.connect("products.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Products")
     products = cursor.fetchall()

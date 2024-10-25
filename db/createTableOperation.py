@@ -22,3 +22,19 @@ def createTables():
 
     conn.commit()
     conn.close()
+
+def createProductTable():
+    conn = sqlite3.connect("products.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Products(
+        product_name varchar(255),
+        stock int,
+        price int,
+        category varchar(255),
+        expiry_date date
+    );
+    """)
+
+    conn.commit()
+    conn.close()
