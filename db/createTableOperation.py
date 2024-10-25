@@ -6,7 +6,7 @@ def createTables():
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Users(
         id int primary key,
-        user_id varchar(100),
+        user_id varchar(100) primary key,
         password varchar(100),
         level int,
         date_of_account_creation date,

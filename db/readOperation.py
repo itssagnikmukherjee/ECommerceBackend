@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3,requests
 
 def getAllUsers():
     conn = sqlite3.connect("my_medicalshop.db")
@@ -46,3 +46,28 @@ def getProducts():
         
     print(productJson)
     return productJson
+
+def getSpecificUser(user_id):
+    conn = sqlite3.connect("my_medicalshop.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Users WHERE user_id = ?", (user_id,))
+    user = cursor.fetchone()
+    conn.close()
+    userJson = []
+    tempUser = {
+            "id": user[0],
+            "user_id": user[1],
+            "password": user[2],
+            "level": user[3],
+            "date_of_account_creation": str(user[4]),
+            "isApproved": user[5],
+            "block": user[6],
+            "name": user[7],
+            "email": user[8],
+            "pin": user[9],
+            "address": user[10],
+            "phoneNo": user[11]
+        }
+    userJson.append(tempUser)
+    print(userJson)
+    return userJson

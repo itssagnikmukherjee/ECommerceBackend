@@ -1,7 +1,7 @@
 from flask import Flask,jsonify,request
 from db.createTableOperation import createTables, createProductTable
 from db.addOperation import createUser, createNewProduct
-from db.readOperation import getAllUsers, getProducts
+from db.readOperation import getAllUsers, getProducts, getSpecificUser
 from db.auth import user_auth
 
 app = Flask(__name__)
@@ -41,7 +41,6 @@ def login():
 
 #products 
 
-
 @app.route('/createProduct', methods=['POST'])
 def createProduct():
     product_name = request.form['product_name']
@@ -58,6 +57,15 @@ def createProduct():
 def getAllProducts():
     products = getProducts()
     return jsonify(products)
+
+
+#get specific user information
+
+@app.route('/getSpecificUser', methods=['POST'])
+def getAnySpecificUser():
+    user_id = request.form['user_id']
+    getUserInfo = getSpecificUser(user_id)
+    return jsonify(getUserInfo)
 
 
 if __name__ == "__main__":
