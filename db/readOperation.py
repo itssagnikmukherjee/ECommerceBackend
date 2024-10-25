@@ -26,3 +26,23 @@ def getAllUsers():
         
     print(userJson)
     return userJson
+
+def getProducts():
+    conn = sqlite3.connect("my_medicalshop.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM Products")
+    products = cursor.fetchall()
+    conn.close()
+    productJson = []
+    for product in products:
+        tempProduct = {
+            "product_name": product[0],
+            "stock": product[1],
+            "price": product[2],
+            "category": product[3],
+            "expiry_date": str(product[4])
+        }
+        productJson.append(tempProduct)
+        
+    print(productJson)
+    return productJson

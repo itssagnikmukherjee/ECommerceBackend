@@ -1,7 +1,7 @@
 from flask import Flask,jsonify,request
 from db.createTableOperation import createTables
-from db.addOperation import createUser
-from db.readOperation import getAllUsers
+from db.addOperation import createUser, createProduct
+from db.readOperation import getAllUsers, getProducts
 from db.auth import user_auth
 
 app = Flask(__name__)
