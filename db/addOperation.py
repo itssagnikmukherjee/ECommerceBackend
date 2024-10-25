@@ -20,4 +20,4 @@ def createUser(name,password,email,pinCode,address,phoneNo):
     conn.commit()
     conn.close()
 
-    return user_id
+    return {"message": "User created successfully", "user_id": user_id, "user_name": name}

@@ -4,9 +4,7 @@ from db.addOperation import createUser
 from db.readOperation import getAllUsers
 from db.auth import user_auth
 
-
 app = Flask(__name__)
-
 
 @app.route('/signUp',methods = ['POST'])
 def signUp():
@@ -36,7 +34,7 @@ def login():
     if user:
         return jsonify({"message": "Logged in successfully", "user": user}), 200
     else:
-        return jsonify({"message": "Invalid credentials"}), 401
+        return jsonify({"message": "Invalid email or password"}), 401
     
     return user
 
