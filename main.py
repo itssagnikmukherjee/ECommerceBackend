@@ -20,7 +20,7 @@ def signUp():
 
     data = createUser(name=name,password=password,email=email,address=address,pinCode=pinCode,phoneNo=phoneNo)
 
-    return data
+    return jsonify(data)
 
 @app.route('/getAllUsers', methods=['GET'])
 def getUsers():
