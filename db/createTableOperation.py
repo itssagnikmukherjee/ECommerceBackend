@@ -5,7 +5,7 @@ def createTables():
     cursor = conn.cursor()
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Users(
-        id int primary key,
+        id int primary key autoincrement,
         user_id varchar(100),
         password varchar(100),
         level int,

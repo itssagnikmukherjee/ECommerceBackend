@@ -6,7 +6,7 @@ def createUser(name,password,email,pinCode,address,phoneNo):
     conn = sqlite3.connect("my_medicalshop.db")
     cursor = conn.cursor()
 
-    user_id = str(uuid.uuid4)
+    user_id = str(uuid.uuid4())
 
     date_of_account_creation = date.today()
 

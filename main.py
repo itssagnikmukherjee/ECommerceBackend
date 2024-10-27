@@ -7,14 +7,16 @@ from db.auth import user_auth
 app = Flask(__name__)
 
 
+#sign up a user
+
 @app.route('/signUp',methods = ['POST'])
 def signUp():
-    name = request.form['name']
-    password = request.form['password']
-    email = request.form['email']
-    address = request.form['address']
-    pinCode = request.form['pinCode']
-    phoneNo = request.form['phoneNo']
+    name = request.form.get('name',None)
+    password = request.form.get('password',None)
+    email = request.form.get('email',None)
+    address = request.form.get('address',None)
+    pinCode = request.form.get('pinCode',None)
+    phoneNo = request.form.get('phoneNo',None)
 
     data = createUser(name=name,password=password,email=email,address=address,pinCode=pinCode,phoneNo=phoneNo)
 
