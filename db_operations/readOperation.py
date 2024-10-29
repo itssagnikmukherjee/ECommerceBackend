@@ -1,7 +1,7 @@
 import sqlite3,requests
 
 def getAllUsers():
-    conn = sqlite3.connect("my_medicalshop.db")
+    conn = sqlite3.connect("databases/user_info.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Users")
     users = cursor.fetchall()
@@ -28,7 +28,7 @@ def getAllUsers():
     return userJson
 
 def getProducts():
-    conn = sqlite3.connect("products.db")
+    conn = sqlite3.connect("databases/products.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Products")
     products = cursor.fetchall()
@@ -48,7 +48,7 @@ def getProducts():
     return productJson
 
 def getSpecificUser(user_id):
-    conn = sqlite3.connect("my_medicalshop.db")
+    conn = sqlite3.connect("databases/user_info.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM Users WHERE user_id = ?", (user_id,))
     user = cursor.fetchone()

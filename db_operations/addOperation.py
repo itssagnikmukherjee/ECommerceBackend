@@ -3,7 +3,7 @@ import uuid
 from datetime import date
 
 def createUser(name,password,email,pinCode,address,phoneNo):
-    conn = sqlite3.connect("my_medicalshop.db")
+    conn = sqlite3.connect("databases/user_info.db")
     cursor = conn.cursor()
 
     user_id = str(uuid.uuid4())
@@ -24,7 +24,7 @@ def createUser(name,password,email,pinCode,address,phoneNo):
 
 
 def createNewProduct(product_name,stock,price,category,expiry_date):
-    conn = sqlite3.connect("products.db")
+    conn = sqlite3.connect("databases/products.db")
     cursor = conn.cursor()
 
     cursor.execute(
