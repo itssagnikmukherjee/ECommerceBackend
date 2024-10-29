@@ -2,7 +2,7 @@ from flask import Flask,jsonify,request
 from db.createTableOperation import createTables, createProductTable
 from db.addOperation import createUser, createNewProduct
 from db.readOperation import getAllUsers, getProducts, getSpecificUser, getSpecificUserName
-from db.updateOperation import updateUserName
+from db.updateOperation import updateUserName, updateUserInfo
 from db.auth import user_auth
 
 app = Flask(__name__)
@@ -71,17 +71,45 @@ def getAnySpecificUser():
     getUserInfo = getSpecificUser(user_id)
     return jsonify(getUserInfo)
 
-@app.route('/updateUserName', methods=['PATCH'])
-def updateAnUserName():
+@app.route('/updateUser', methods=['PATCH'])
+def updateAnUser():
     try:
         user_id = request.form['user_id']
-        name = request.form['name']
-        prevUserName = getSpecificUserName(user_id)
-        updateUserName(userID=user_id, name=name)
-        return jsonify({"status": 200,"message": "user name is updated successfully", "prev user name" : prevUserName,"new user name" : name})
+        name = request.form.get('name', None)
+        password = request.form.get('password', None)
+        email = request.form.get('email', None)
+        phoneNo = request.form.get('phoneNo', None)
+        address = request.form.get('address', None)
+        pinCode = request.form.get('pinCode', None)
+        #previous user information
+        prev_user_info = getSpecificUser(user_id)
+
+        if not prev_user_info:
+            return jsonify({"message": "User not found"}), 404
+
+        #update user information if provided
+
+        if name:
+            updateUserName(user_id, name)
+        if email:
+            updateUserInfo(user_id, email=email)
+        if phoneNo:
+            updateUserInfo(user_id, phoneNo=phoneNo)
+        if password:
+            updateUserInfo(user_id, password=password)
+        if address:
+            updateUserInfo(user_id, address=address)
+        if pinCode:
+            updateUserInfo(user_id, pinCode=pinCode)
+
+        #updated information
+        updated_user_info = getSpecificUser(user_id)
+
+        return jsonify({"message": "User information updated successfully","previous info": prev_user_info,"new user info":updated_user_info}), 200
     
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 
 
