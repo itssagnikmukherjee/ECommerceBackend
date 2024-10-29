@@ -1,7 +1,7 @@
 import sqlite3
 
 def createTables():
-    conn = sqlite3.connect("my_medicalshop.db")
+    conn = sqlite3.connect("databases/my_medicalshop.db")
     cursor = conn.cursor()
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Users(
@@ -24,7 +24,7 @@ def createTables():
     conn.close()
 
 def createProductTable():
-    conn = sqlite3.connect("products.db")
+    conn = sqlite3.connect("databases/products.db")
     cursor = conn.cursor()
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Products(
