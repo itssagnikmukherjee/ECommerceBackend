@@ -71,3 +71,10 @@ def getSpecificUser(user_id):
     userJson.append(tempUser)
     print(userJson)
     return userJson
+
+def getSpecificUserName(user_id):
+    users = getAllUsers()
+    for user in users:
+        if user['user_id'] == user_id:
+            return user['name']
+    return "User not found"

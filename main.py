@@ -1,7 +1,8 @@
 from flask import Flask,jsonify,request
 from db.createTableOperation import createTables, createProductTable
 from db.addOperation import createUser, createNewProduct
-from db.readOperation import getAllUsers, getProducts, getSpecificUser
+from db.readOperation import getAllUsers, getProducts, getSpecificUser, getSpecificUserName
+from db.updateOperation import updateUserName
 from db.auth import user_auth
 
 app = Flask(__name__)
@@ -69,6 +70,19 @@ def getAnySpecificUser():
     user_id = request.form['user_id']
     getUserInfo = getSpecificUser(user_id)
     return jsonify(getUserInfo)
+
+@app.route('/updateUserName', methods=['PATCH'])
+def updateAnUserName():
+    try:
+        user_id = request.form['user_id']
+        name = request.form['name']
+        prevUserName = getSpecificUserName(user_id)
+        updateUserName(userID=user_id, name=name)
+        return jsonify({"status": 200,"message": "user name is updated successfully", "prev user name" : prevUserName,"new user name" : name})
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 
 if __name__ == "__main__":
