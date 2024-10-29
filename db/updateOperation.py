@@ -16,6 +16,8 @@ def updateUserInfo(userID, **keyword):
     for key, value in keyword.items():
         if key == "name":
             cursor.execute("UPDATE Users SET name = ? WHERE user_id = ?", (value, userID))
+        elif key == "password":
+            cursor.execute("UPDATE Users SET password =? WHERE user_id =?", (value, userID))
         elif key == "email":
             cursor.execute("UPDATE Users SET email = ? WHERE user_id = ?", (value, userID))
         elif key == "phoneNo":
